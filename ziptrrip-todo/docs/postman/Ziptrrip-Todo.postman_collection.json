@@ -1,0 +1,67 @@
+{
+  "info": {
+    "name": "Ziptrrip Todo API",
+    "_postman_id": "9eaf6a4b-8b5f-4b37-8f4a-ziptrriptodo",
+    "description": "CRUD API collection for the Ziptrrip Tech Todo assignment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000" },
+    { "key": "todoId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/health" }
+    },
+    {
+      "name": "Todos",
+      "item": [
+        {
+          "name": "List Todos",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/todos" }
+        },
+        {
+          "name": "List Active Todos",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/todos?completed=false" }
+        },
+        {
+          "name": "Get Todo",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/todos/{{todoId}}" }
+        },
+        {
+          "name": "Create Todo",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Prepare Ziptrrip assignment\",\n  \"description\": \"Review the project and documentation\",\n  \"priority\": \"high\",\n  \"dueDate\": \"2026-09-10\"\n}"
+            },
+            "url": "{{baseUrl}}/api/todos"
+          }
+        },
+        {
+          "name": "Update Todo",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated todo title\",\n  \"priority\": \"medium\"\n}"
+            },
+            "url": "{{baseUrl}}/api/todos/{{todoId}}"
+          }
+        },
+        {
+          "name": "Toggle Todo",
+          "request": { "method": "PATCH", "url": "{{baseUrl}}/api/todos/{{todoId}}/toggle" }
+        },
+        {
+          "name": "Delete Todo",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/todos/{{todoId}}" }
+        }
+      ]
+    }
+  ]
+}
